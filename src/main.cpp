@@ -4,6 +4,8 @@
 
 #define GL_SILENCE_DEPRECATION
 #include <OpenGL/OpenGL.h>
+#include <memory>
+#include "App.hpp"
  
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -41,15 +43,19 @@ int main() {
     //     return -1;
     // }
 
+    //todo create instance
+    std::shared_ptr<App> app = std::make_shared<App>();
+    app->init();
+
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
 
-        glClearColor(1.0f , 1.0f , 0.2f ,1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        app->tick();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+    app->free();
 
 	glfwTerminate();
 
