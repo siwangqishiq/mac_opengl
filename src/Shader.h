@@ -1,8 +1,12 @@
 #pragma once
 
-#include <OpenGL/OpenGL.h>
+#include "glad/glad.h"
 #include <string>
 #include <unordered_map>
+
+#ifndef GLSL
+#define GLSL(A) "#version 330 core\n" #A
+#endif
 
 //编译shader源码
 static GLuint CompileShader(GLenum shaderType, const char* shaderSource);

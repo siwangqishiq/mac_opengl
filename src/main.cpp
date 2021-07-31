@@ -2,8 +2,7 @@
 
 #include <GLFW/glfw3.h>
 
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/OpenGL.h>
+#include "glad/glad.h"
 #include <memory>
 #include "App.hpp"
  
@@ -38,10 +37,10 @@ int main() {
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
-    // if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    //     std::cout << "Failed to initialize GLAD" << std::endl;
-    //     return -1;
-    // }
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
 
     //todo create instance
     std::shared_ptr<App> app = std::make_shared<App>();
